@@ -2,8 +2,6 @@ import React from 'react'
 import { Button, Form, Input, Card } from 'antd'
 import './AllPosts.css'
 import ArticleHeader from '../components/Header'
-import useFetch from '../hooks/useFetch'
-import TabsEnum from '../enum/tabs'
 
 const { TextArea } = Input
 
@@ -19,20 +17,12 @@ const tailLayout = {
 const AddNew: React.FC = () => {
   const [form] = Form.useForm()
 
-  const {
-    fetchData: fetchCreateArticles
-  } = useFetch({
-    url: '/article',
-    method: 'post'
-  })
-
   const onFinish = (values: any): void => {
-    fetchCreateArticles({
-      body: {
-        ...values,
-        status: TabsEnum.PUBLISHED
-      }
-    })
+    console.log(values)
+  }
+
+  const onReset = (): void => {
+    form.resetFields()
   }
 
   return (
@@ -58,7 +48,7 @@ const AddNew: React.FC = () => {
           <Button type="primary" htmlType="submit" style={{ marginRight: '10px' }}>
           Publish
           </Button>
-          <Button htmlType="button">
+          <Button htmlType="button" onClick={onReset}>
           Draft
           </Button>
       </Form.Item>
