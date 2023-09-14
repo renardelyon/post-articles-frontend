@@ -16,7 +16,9 @@ interface DataType {
 }
 
 function ArticleTable ({
-  data
+  data,
+  onClick,
+  onDelete
 }: ArticleTableProps): JSX.Element {
   const columns: ColumnsType<DataType> = [
     {
@@ -32,12 +34,12 @@ function ArticleTable ({
     {
       title: 'Action',
       key: 'action',
-      render: (_, record) => (
-          <Space size="middle">
-            <EditOutlined style={{ cursor: 'pointer' }}/>
-            <DeleteOutlined style={{ cursor: 'pointer' }} />
-          </Space>
-      )
+      render: (_, record) => {
+        return (<Space size="middle">
+            <EditOutlined style={{ cursor: 'pointer' }} onClick={onClick} />
+            <DeleteOutlined style={{ cursor: 'pointer' }} onClick={onDelete(record)}/>
+          </Space>)
+      }
     }
   ]
 
@@ -50,6 +52,12 @@ function ArticleTable ({
 
 interface ArticleTableProps {
   data?: DataType[]
+  onClick?: () => void
+  onDelete: (val: any) => () => void
+}
+
+ArticleTable.DefaultProps = {
+  onDelete: (val: any) => () => {}
 }
 
 export default ArticleTable

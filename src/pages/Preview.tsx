@@ -1,6 +1,5 @@
 import ArticleTable from '../components/ArticleTable'
 import { Card } from 'antd'
-import ArticleTabs from '../components/ArticleTabs'
 import useFetch from '../hooks/useFetch'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -9,7 +8,6 @@ import TabsEnum from '../enum/tabs'
 import ArticleHeader from '../components/Header'
 
 const AllPosts: React.FC = () => {
-  const [tabsEnum, setTabsEnum] = useState<TabsEnum>(TabsEnum.PUBLISHED)
   const [stateDataArticle, setStateDataArticle] = useState<any[]>([])
   const navigate = useNavigate()
 
@@ -34,11 +32,7 @@ const AllPosts: React.FC = () => {
     })
   }, [])
 
-  const result = (stateDataArticle).filter((elem) => elem.status === tabsEnum)
-
-  const onChange = (key: string): void => {
-    setTabsEnum(key as TabsEnum)
-  }
+  const result = (stateDataArticle).filter((elem) => elem.status === TabsEnum.PUBLISHED)
 
   const onClick = (): void => {
     navigate('/edit')
@@ -58,10 +52,9 @@ const AllPosts: React.FC = () => {
 
   return (
     <ArticleHeader element={(
-      <Card style={{ width: '90%', height: '90%' }}>
-        <ArticleTabs onChange={onChange}/>
-        <ArticleTable data={result ?? []} onClick={onClick} onDelete={onDelete}/>
-      </Card>
+        <Card style={{ width: '90%', height: '90%' }}>
+            <ArticleTable data={result ?? []} onClick={onClick} onDelete={onDelete}/>
+        </Card>
     )}/>
   )
 }
