@@ -1,21 +1,22 @@
 import type { TabsProps } from 'antd'
 import { Tabs } from 'antd'
 import React from 'react'
+import TabsEnum from '../enum/tabs'
 
 function ArticleTabs ({
   onChange
 }: ArticleTabsProps): JSX.Element {
   const itemTabs: TabsProps['items'] = [
     {
-      key: '1',
+      key: TabsEnum.PUBLISHED,
       label: 'Published'
     },
     {
-      key: '2',
+      key: TabsEnum.DRAFTS,
       label: 'Drafts'
     },
     {
-      key: '3',
+      key: TabsEnum.TRASH,
       label: 'Trashed'
     }
   ]
