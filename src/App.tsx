@@ -6,6 +6,7 @@ import {
 import type { MenuProps } from 'antd'
 import { Layout, Menu, Typography } from 'antd'
 import React from 'react'
+// import AddNew from './pages/AddNew'
 import AllPosts from './pages/AllPosts'
 
 const { Title } = Typography
@@ -48,7 +49,8 @@ function App (): JSX.Element {
           </Title>
         </Header>
         <Content className='card-container'>
-         <AllPosts/>
+          {/* <AddNew/> */}
+          <AllPosts />
         </Content>
       </Layout>
     </Layout>

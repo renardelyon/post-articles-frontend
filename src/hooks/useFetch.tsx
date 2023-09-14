@@ -35,7 +35,7 @@ const useFetch = ({
           'Content-Type': 'application/json'
         },
         params: params ?? {},
-        withCredentials: true
+        withCredentials: false
       })
 
       setData(res.data)
